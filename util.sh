@@ -173,9 +173,28 @@ elif [[ $1 = "getupdate" ]]; then
         ls -l util
         mv util /usr/local/games/util
         echo "Done"
+        wget https://raw.githubusercontent.com/ribkix/util/master/changelog.txt -O util_changelog.txt
+        printf '%b\n' "$(cat util_changelog.txt)"
     else
         echo "This command must be run under root."
     fi
+elif [[ $1 = "changelog" ]]; then
+    echo "=+= What's new in Version 2020.8.5 =+="
+    echo ""
+    echo "- Added categories to the help command"
+    echo "- Added multi distro support to the package commands"
+    echo "- Added optional editor argument to the new command"
+    echo "- Added del command"
+    echo "- Added refresh command"
+    echo "- Added getupdate command"
+    echo "- Added changelog command"
+    echo "- Added version command"
+    echo "- Added getversion command"
+elif [[ $1 = "version" ]]; then
+    echo "2020.8.5"
+elif [[ $1 = "getversion" ]]; then
+    wget https://raw.githubusercontent.com/ribkix/util/master/version.txt -O util_version.txt
+    printf '%b\n' "$(cat util_version.txt)"
 elif [[ $1 = "help" ]]; then
     echo "[] - optional argument"
     echo "<> - required argument"
@@ -207,9 +226,15 @@ elif [[ $1 = "help" ]]; then
     echo "util root - login to root"
     echo "util create-root - create root"
     echo "[S] util deb <.deb file> - install deb file (root required)"
+    echo ""
+    echo "MANAGE UTIL"
+    echo ""
     echo "util refresh - updates util with new code in the .sh file"
     echo "util getupdate - updates util from the internet (root required)"
-else
+    echo "util changelog - shows the changelog"
+    echo "util version - shows current version you're running"
+    echo "util getversion - gets and shows currently available version"
+ else
     echo "Invalid command \"$1\""
     echo "Try running \"util help\""
 fi
