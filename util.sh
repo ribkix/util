@@ -194,6 +194,7 @@ elif [[ $1 = "version" ]]; then
     echo "2020.8.5"
 elif [[ $1 = "getversion" ]]; then
     wget https://raw.githubusercontent.com/ribkix/util/master/version.txt -O util_version.txt
+    echo "Currently available version:"
     printf '%b\n' "$(cat util_version.txt)"
 elif [[ $1 = "help" ]]; then
     echo "[] - optional argument"
