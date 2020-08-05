@@ -97,14 +97,12 @@ mv util /usr/local/games/util</code></pre></div>
   var selected = "home";
   
   function setselected(sel){
-    console.log("setselected: #nav-" + sel);
     document.getElementById("nav-" + selected).classList.remove("selected");
     document.getElementById("nav-" + sel).classList.add("selected");
   }
   
   function gotosection(sec){
-    console.log("gotosection: #" + sec);
-    document.document.getElementById(sec).scrollIntoView({
+    document.getElementById(sec).scrollIntoView({
       behavior: 'smooth'
     })
   }
