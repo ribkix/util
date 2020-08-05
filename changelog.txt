@@ -1,0 +1,9 @@
+=+= What's new in Version 2020.8.5 =+=
+
+- Added categories to the help command
+- Added multi distro support to the package commands
+- Added optional editor argument to the new command
+- Added del command
+- Added refresh command
+- Added getupdate command
+- Added changelog command
