@@ -209,7 +209,6 @@ elif [[ $1 = "help" ]]; then
     echo "[S] util deb <.deb file> - install deb file (root required)"
     echo "util refresh - updates util with new code in the .sh file"
     echo "util getupdate - updates util from the internet (root required)"
-    echo "test"
 else
     echo "Invalid command \"$1\""
     echo "Try running \"util help\""
