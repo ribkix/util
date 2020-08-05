@@ -17,10 +17,10 @@
       <section class="nav">
         <span class="nav-close"></span>
         <div class="nav-scroller">
-          <a class="selected" href="http://utilsh.tk">Home</a>
-          <a href="#about">About</a>
-          <a href="#install">Install</a>
-          <a href="#commands">Commands</a>
+          <a class="selected" href="javascript:home();">Home</a>
+          <a href="javascript:about();">About</a>
+          <a href="javascript:install();">Install</a>
+          <a href="javascript:commands();">Commands</a>
         </div>
       </section>
       <h1>Util.sh</h1>
@@ -43,12 +43,87 @@
       <p>Download <a href="https://raw.githubusercontent.com/ribkix/util/master/util.sh">the util.sh file</a> and put it on your home folder.</p>
       <h2>Convert to executable</h2>
       <p>To convert the file to executable, run the following commands:</p>
-      <pre><code class="highlight">cp util.sh util
+      <div class="highlight"><pre class="highlight"><code class="highlight">cp util.sh util
 ls -l util
 chmod u+x util
 ls -l util
 chmod a+x util
-ls -l util</code></pre>
+ls -l util</code></pre></div>
+      <br>
+      <p>Now, run the following commands, if you don't have a root user, run <code class="highlight">sudo passwd root</code>.</p>
+      <div class="highlight"><pre class="highlight"><code class="highlight">su
+mv util /usr/local/games/util</code></pre></div>
+      <h2>Run util</h2>
+      <p>To now run util type <code class="highlight">util</code> and then the command you want to run. For a list of commands run <code class="highlight">util help</code>.</p>
+      <br>
+    </div>
+    <div id="commands" class="markdown-container">
+      <h1>Commands</h1>
+      <!-- <code class="highlight"></code> -->
+      <p><code class="highlight">[]</code> - optional argument</p>
+      <p><code class="highlight">&lt;&gt;</code> - required argument</p>
+      <p><code class="highlight">[S]</code> - possible to add <code class="highlight">s-</code> before the command to run without root, for example: <code class="highlight">util s-install</code></p>
+      <p>(DO NOT INCLUDE THESE WHEN TYPING THE COMMAND)</p>
+      <h2>Files</h2>
+      <p>util copy <code class="highlight">&lt;file to copy&gt;</code> <code class="highlight">&lt;destination to paste&gt;</code> - copies and pastes file</p>
+      <p>util move <code class="highlight">&lt;file to move&gt;</code> <code class="highlight">&lt;destination to move it to&gt;</code> - moves a file</p>
+      <p>util new <code class="highlight">&lt;file name&gt;</code> <code class="highlight">[editor]</code> - makes a new file</p>
+      <p>util del <code class="highlight">&lt;file name&gt;</code> deletes a file</p>
+      <h2>Packages</h2>
+      <p><code class="highlight">[S]</code> util install <code class="highlight">&lt;package&gt;</code> - installs what package you specified (root required)</p>
+      <p>util list - shows lists of packages you can install</p>
+      <p><code class="highlight">[S]</code> util remove <code class="highlight">&lt;package&gt;</code> - removes what you specified (root required)</p>
+      <p><code class="highlight">[S]</code> util update - updates list of available packages (root required)</p>
+      <p>util search <code class="highlight">&lt;package&gt;</code> - searches the package you specified</p>
+      <p>util show <code class="highlight">&lt;package&gt;</code> - shows the package you specified</p>
+      <p><code class="highlight">[S]</code> util reinstall <code class="highlight">&lt;package&gt;</code> - reinstalls what package you specified (root required)</p>
+      <p><code class="highlight">[S]</code> util autoremove - automatically removes all unused packages (root required)</p>
+      <p><code class="highlight">[S]</code> util upgrade - upgrades the system by installing/upgrading packages (root required)</p>
+      <h2>Miscellaneous</h2>
+      <p>util executable <code class="highlight">&lt;file&gt;</code> - makes the specified file an executable (root required)</p>
+      <p>util root - login to root</p>
+      <p>util create-root - create root</p>
+      <p><code class="highlight">[S]</code> util deb <code class="highlight">&lt;.deb file&gt;</code> - install deb file (root required)</p>
+      <h2>Manage Util</h2>
+      <p>util refresh - updates util with new code in the .sh file</p>
+      <p>util getupdate - updates util from the internet (root required)</p>
+      <p>util changelog - shows the changelog</p>
+      <p>util version - shows current version you're running</p>
+      <p>util getversion - gets and shows currently available version</p>
     </div>
   </body>
 </html>
+<script>
+  var selected = "home";
+  
+  function setselected(sel){
+    document.getElementById(selected).classList.remove("selected");
+    document.getElementById(sel).classList.add("selected");
+  }
+  
+  function gotosection(sec){
+    document.document.getElementById(sec).scrollIntoView({
+      behavior: 'smooth'
+    })
+  }
+  
+  function home(){
+    gotosection("home");
+    setselected("home");
+  }
+  
+  function about(){
+    gotosection("about");
+    setselected("about");
+  }
+  
+  function install(){
+    gotosection("install");
+    setselected("install");
+  }
+  
+  function commands(){
+    gotosection("commands");
+    setselected("commands");
+  }
+</script>
