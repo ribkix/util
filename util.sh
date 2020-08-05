@@ -162,6 +162,20 @@ elif [[ $1 =  "refresh" ]]; then
     else
         echo "This command must be run under root."
     fi
+elif [[ $1 = "getupdate" ]]; then
+    if [[ $EUID = 0 ]]; then
+        wget https://raw.githubusercontent.com/ribkix/util/master/util.sh -O util.sh
+        cp util.sh util
+        ls -l util
+        chmod u+x util
+        ls -l util
+        chmod a+x util
+        ls -l util
+        mv util /usr/local/games/util
+        echo "Done"
+    else
+        echo "This command must be run under root."
+    fi
 elif [[ $1 = "help" ]]; then
     echo "[] - optional argument"
     echo "<> - required argument"
@@ -194,6 +208,8 @@ elif [[ $1 = "help" ]]; then
     echo "util create-root - create root"
     echo "[S] util deb <.deb file> - install deb file (root required)"
     echo "util refresh - updates util with new code in the .sh file"
+    echo "util getupdate - updates util from the internet (root required)"
+    echo "test"
 else
     echo "Invalid command \"$1\""
     echo "Try running \"util help\""
