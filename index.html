@@ -4,8 +4,9 @@
     <title>Util.sh</title>
     <link href="https://modesta.alexflipnote.dev/css/modesta.css" type="text/css" rel="stylesheet">
     <script src="https://modesta.alexflipnote.dev/js/modesta.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    <link href="https://raw.githubusercontent.com/googlearchive/code-prettify/master/styles/desert.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="/path/to/styles/default.css">
+    <script src="/path/to/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     <meta name="description" content="Util.sh is a linux script full of commands to make it easier for you to remember very complicated commands or turn multiple commands into one.">
     <meta name="keywords" content="util,utility,linux,debian,fedora,arch,distro,sh,bash,bourne,again,shell">
     <meta property="og:image" content="https://rbsurl.tk/f9T14V">
@@ -45,12 +46,12 @@
       <p>Download <a href="https://raw.githubusercontent.com/ribkix/util/master/util.sh">the util.sh file</a> and put it on your home folder.</p>
       <h2>Convert to executable</h2>
       <p>To convert the file to executable, run the following commands:</p>
-      <pre class="prettyprint">cp util.sh util
+      <pre><code class="bash">cp util.sh util
 ls -l util
 chmod u+x util
 ls -l util
 chmod a+x util
-ls -l util</pre>
+ls -l util</code></pre>
     </div>
   </body>
 </html>
