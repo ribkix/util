@@ -7,3 +7,5 @@
 - Added refresh command
 - Added getupdate command
 - Added changelog command
+- Added version command
+- Added getversion command
