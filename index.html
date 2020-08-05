@@ -17,16 +17,16 @@
       <section class="nav">
         <span class="nav-close"></span>
         <div class="nav-scroller">
-          <a class="selected" href="javascript:home();">Home</a>
-          <a href="javascript:about();">About</a>
-          <a href="javascript:install();">Install</a>
-          <a href="javascript:commands();">Commands</a>
+          <a id="nav-home" class="selected" href="javascript:home();">Home</a>
+          <a id="nav-about" href="javascript:about();">About</a>
+          <a id="nav-install" href="javascript:install();">Install</a>
+          <a id="nav-commands" href="javascript:commands();">Commands</a>
         </div>
       </section>
       <h1>Util.sh</h1>
     </header>
     <div align="center" class="markdown-container">
-      <h1 style="font-size:7em;">Util.sh</h1>
+      <h1 id="home" style="font-size:7em;">Util.sh</h1>
       <p>Util.sh is a linux script full of commands to make it easier for you to remember very complicated commands or turn multiple commands into one.</p>
       <br>
     </div>
@@ -97,11 +97,13 @@ mv util /usr/local/games/util</code></pre></div>
   var selected = "home";
   
   function setselected(sel){
-    document.getElementById(selected).classList.remove("selected");
-    document.getElementById(sel).classList.add("selected");
+    console.log("setselected: #nav-" + sel);
+    document.getElementById("nav-" + selected).classList.remove("selected");
+    document.getElementById("nav-" + sel).classList.add("selected");
   }
   
   function gotosection(sec){
+    console.log("gotosection: #" + sec);
     document.document.getElementById(sec).scrollIntoView({
       behavior: 'smooth'
     })
