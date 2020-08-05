@@ -201,6 +201,7 @@ elif [[ $1 = "help" ]]; then
     echo "<> - required argument"
     # echo "<thing1 | thing2> - select one of these options"
     echo "[S] - possible to add \"s-\" before the command to run without root, for example: util s-install"
+    echo "(DO NOT INCLUDE THESE WHEN TYPING THE COMMAND)"
     echo ""
     echo "FILES"
     echo ""
