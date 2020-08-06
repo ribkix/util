@@ -21,6 +21,7 @@
           <a id="nav-about" href="javascript:about();">About</a>
           <a id="nav-install" href="javascript:install();">Install</a>
           <a id="nav-commands" href="javascript:commands();">Commands</a>
+          <a id="nav-plugins" href="javascript:plugins();">Plugins</a>
         </div>
       </section>
       <h1>Util.sh</h1>
@@ -91,6 +92,11 @@ mv util /usr/local/games/util</code></pre></div>
       <p>util changelog - shows the changelog</p>
       <p>util version - shows current version you're running</p>
       <p>util getversion - gets and shows currently available version</p>
+      <br>
+    </div>
+    <div id="plugins" class="markdown-container">
+      <h1>Plugins</h1>
+      <p>Get plugins here: <a href="https://github.com/ribkix/util-plugins">https://github.com/ribkix/util-plugins</a></p>
     </div>
   </body>
 </html>
@@ -127,5 +133,10 @@ mv util /usr/local/games/util</code></pre></div>
   function commands(){
     gotosection("commands");
     setselected("commands");
+  }
+  
+  function plugins(){
+    gotosection("plugins");
+    setselected("plugins");
   }
 </script>
