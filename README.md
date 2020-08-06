@@ -82,17 +82,6 @@ util show `<package>` - shows the package you specified
 
 `[S]` util upgrade - upgrades the system by installing/upgrading packages (root required)
 
-Miscellaneous
--
-
-util executable `<file>` - makes the specified file an executable (root required)
-  
-util root - login to root
-
-util create-root - create root
-
-`[S]` util deb `.deb file` - install deb file (root required)
-
 Manage Util
 -
 
@@ -105,3 +94,50 @@ util changelog - shows the changelog
 util version - shows current version you're running
 
 util getversion - gets and shows currently available version
+
+util getchangelog - gets and shows current changelog
+
+Plugins
+-
+
+util plugin-folder - creates plugin folder
+
+util plugins - view your installed plugins
+
+util library - sends you to the plugin library
+
+util getviewplugin `<plugin>` - views the plugin you specified on the internet
+
+util downloadplugin `<plugin>` - download the plugin you specified from the internet
+
+util p `<plugin>` - run plugin
+
+util viewplugin `<plugin>` - view installed plugin you specified
+
+util deleteplugin `<plugin>` - deletes installed plugin youspecified
+
+util getplugins - view all available plugins
+
+Miscellaneous
+-
+
+util executable `<file>` - makes the specified file an executable (root required)
+  
+util root - login to root
+
+util create-root - create root
+
+`[S]` util deb `.deb file` - install deb file (root required)
+
+util copycmd `<command>` - copies the command specified
+
+util pastecmd `<command>` - pastes the command copied
+
+util geturl `<url>` - download file from URL
+
+util website - goes to the official Util.sh website
+
+Plugins
+=
+
+Get plugins here: https://github.com/ribkix/util-plugins
