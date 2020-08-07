@@ -126,7 +126,7 @@ mv util /usr/local/games/util</code></pre></div>
   var selected = "home";
   
   function setselected(sel){
-    if (document.getElementById("nav-" + selected) != null){
+    if (document.getElementById("nav-" + sel) != null){
       document.getElementById("nav-" + selected).classList.remove("selected");
       document.getElementById("nav-" + sel).classList.add("selected");
       selected = sel;
