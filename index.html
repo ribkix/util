@@ -18,11 +18,11 @@
       <section class="nav">
         <span class="nav-close"></span>
         <div class="nav-scroller">
-          <a id="nav-home" class="selected" href="javascript:home();">Home</a>
-          <a id="nav-about" href="javascript:about();">About</a>
-          <a id="nav-install" href="javascript:install();">Install</a>
-          <a id="nav-commands" href="javascript:commands();">Commands</a>
-          <a id="nav-plugins" href="javascript:plugins();">Plugins</a>
+          <a id="nav-home" class="selected" href="#home">Home</a>
+          <a id="nav-about" href="#about">About</a>
+          <a id="nav-install" href="#install">Install</a>
+          <a id="nav-commands" href="#commands">Commands</a>
+          <a id="nav-plugins" href="#plugins">Plugins</a>
         </div>
       </section>
       <h1>Util.sh</h1>
@@ -119,6 +119,12 @@ mv util /usr/local/games/util</code></pre></div>
     <div class="markdown-container">
       <h1 class="anchored">Plugins</h1>
       <p>Get plugins here: <a href="https://github.com/ribkix/util-plugins">https://github.com/ribkix/util-plugins</a></p>
+      <br>
+    </div>
+    <div class="markdown-container">
+      <h1 class="anchored">Tutorials</h1>
+      <p>Learn more about Util.sh using our tutorials.</p>
+      <a class="btn hover emerald" href="tutorials">View Tutorials</a>
     </div>
   </body>
 </html>
@@ -130,14 +136,6 @@ mv util /usr/local/games/util</code></pre></div>
       document.getElementById("nav-" + selected).classList.remove("selected");
       document.getElementById("nav-" + sel).classList.add("selected");
       selected = sel;
-    }
-  }
-  
-  function gotosection(sec){
-    if (document.getElementById(sec) != null){
-      document.getElementById(sec).scrollIntoView({
-        behavior: 'smooth'
-      })
     }
   }
   
@@ -154,29 +152,4 @@ mv util /usr/local/games/util</code></pre></div>
   window.addEventListener("hashchange", function(){
     setselected(window.location.href.substring(window.location.href.lastIndexOf("#") + 1));
   })
-  
-  function home(){
-    gotosection("home");
-    setselected("home");
-  }
-  
-  function about(){
-    gotosection("about");
-    setselected("about");
-  }
-  
-  function install(){
-    gotosection("install");
-    setselected("install");
-  }
-  
-  function commands(){
-    gotosection("commands");
-    setselected("commands");
-  }
-  
-  function plugins(){
-    gotosection("plugins");
-    setselected("plugins");
-  }
 </script>
