@@ -126,7 +126,7 @@ mv util /usr/local/games/util</code></pre></div>
   var selected = "home";
   
   function setselected(sel){
-    if (document.getElementById("nav-" + selected)){
+    if (document.getElementById("nav-" + selected) != null){
       document.getElementById("nav-" + selected).classList.remove("selected");
       document.getElementById("nav-" + sel).classList.add("selected");
       selected = sel;
@@ -134,7 +134,7 @@ mv util /usr/local/games/util</code></pre></div>
   }
   
   function gotosection(sec){
-    if (document.getElementById(sec)){
+    if (document.getElementById(sec) != null){
       document.getElementById(sec).scrollIntoView({
         behavior: 'smooth'
       })
