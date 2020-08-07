@@ -34,7 +34,7 @@
   var selected = "home";
   
   function setselected(sel){
-    if (document.getElementById("nav-" + selected)){
+    if (document.getElementById(sel) != null){
       document.getElementById("nav-" + selected).classList.remove("selected");
       document.getElementById("nav-" + sel).classList.add("selected");
       selected = sel;
@@ -42,17 +42,26 @@
   }
   
   function gotosection(sec){
-    if (document.getElementById(sec)){
+    if (document.getElementById(sec) != null){
       document.getElementById(sec).scrollIntoView({
         behavior: 'smooth'
       })
     }
   }
   
-  function onLoadFunction(){
-    var id = window.location.href.substring(window.location.href.lastIndexOf("#") + 1);
-    setselected(id);
-  }
+  document.addEventListener('DOMContentLoaded', function(event) {
+    anchors.options = {
+      placement: 'left',
+      visible: 'always',
+      icon: '#'
+    };
+    anchors.add(".anchored");
+    setselected(window.location.href.substring(window.location.href.lastIndexOf("#") + 1));
+  });
+  
+  window.addEventListener("hashchange", function(){
+    setselected(window.location.href.substring(window.location.href.lastIndexOf("#") + 1));
+  })
   
   function home(){
     gotosection("home");
