@@ -33,13 +33,13 @@
       <p>Util.sh is a linux script full of commands to make it easier for you to remember very complicated commands or turn multiple commands into one.</p>
       <br>
     </div>
-    <div id="about" class="markdown-container">
+    <div id="about" class="markdown-container anchored">
       <h1>About</h1>
       <p>Util.sh is a linux script full of commands to make it easier for you to remember very complicated commands or turn multiple commands into one.</p>
       <p>Util.sh gets daily updates, and you can leave suggestions under <a href="https://github.com/ribkix/util/issues">Issues.</a></p>
       <br>
     </div>
-    <div id="install" class="markdown-container">
+    <div id="install" class="markdown-container anchored">
       <h1>How to install Util.sh</h1>
       <p>This will guide you through installing util.sh on your linux computer.</p>
       <h2>Download util.sh</h2>
@@ -60,7 +60,7 @@ mv util /usr/local/games/util</code></pre></div>
       <p>To now run util type <code class="highlight">util</code> and then the command you want to run. For a list of commands run <code class="highlight">util help</code>.</p>
       <br>
     </div>
-    <div id="commands" class="markdown-container">
+    <div id="commands" class="markdown-container anchored">
       <h1>Commands</h1>
       <!-- <code class="highlight"></code> -->
       <p><code class="highlight">[]</code> - optional argument</p>
@@ -116,7 +116,7 @@ mv util /usr/local/games/util</code></pre></div>
       <p>util listblock - lists the available block devices of your Linux system</p>
       <br>
     </div>
-    <div id="plugins" class="markdown-container">
+    <div id="plugins" class="markdown-container anchored">
       <h1>Plugins</h1>
       <p>Get plugins here: <a href="https://github.com/ribkix/util-plugins">https://github.com/ribkix/util-plugins</a></p>
     </div>
@@ -126,24 +126,15 @@ mv util /usr/local/games/util</code></pre></div>
   var selected = "home";
   
   function setselected(sel){
-    if (document.getElementById("nav-" + sel) != null){
-      document.getElementById("nav-" + selected).classList.remove("selected");
-      document.getElementById("nav-" + sel).classList.add("selected");
-      selected = sel;
-    }
+    document.getElementById("nav-" + selected).classList.remove("selected");
+    document.getElementById("nav-" + sel).classList.add("selected");
+    selected = sel;
   }
   
   function gotosection(sec){
-    if (document.getElementById(sec) != null){
-      document.getElementById(sec).scrollIntoView({
-        behavior: 'smooth'
-      })
-    }
-  }
-  
-  function onLoadFunction(){
-//     var id = window.location.href.substring(window.location.href.lastIndexOf("#") + 1);
-//     setselected(id);
+    document.getElementById(sec).scrollIntoView({
+      behavior: 'smooth'
+    })
   }
   
   document.addEventListener('DOMContentLoaded', function(event) {
@@ -152,7 +143,7 @@ mv util /usr/local/games/util</code></pre></div>
       visible: 'always',
       icon: '#'
     };
-    anchors.add("h1");
+    anchors.add(".anchored");
   });
   
   function home(){
