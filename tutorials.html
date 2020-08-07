@@ -20,8 +20,9 @@
         <div class="nav-scroller">
           <a id="nav-home" href="http://utilsh.tk/">Home</a>
           <a id="nav-tutorials" class="selected" href="#tutorials">Tutorials</a>
-          <a id="nav-u-alias" class="indent-2" href='#u-alias'>  "u" alias</a>
-          <a id="nav-p-alias-for-plugins" class="indent-2" href='#p-alias-for-plugins'>  "p" alias for plugins</a>
+          <a id="nav-u-alias" class="indent-2" href='#u-alias'>"u" alias</a>
+          <a id="nav-p-alias-for-plugins" class="indent-2" href='#p-alias-for-plugins'>"p" alias for plugins</a>
+           <a id="nav-creating-plugins" class="indent-2" href='#creating-plugins'>Creating plugins</a>
         </div>
       </section>
       <h1>Util.sh <i>- Tutorials</i></h1>
@@ -44,6 +45,7 @@
           <p>1. Press the <code class="label highlight">I</code> key on your keyboard.</p>
           <p>2. Hold the down arrow key on your keyboard until your at the bottom of the file.</p>
           <p>3. Type <code class="highlight">alias u="util"</code> or paste it in by using ctrl+shift+v.</p>
+          <p>Now press the <code class="label highlight">Esc</code> key on your keyboard, type <code class="highlight">:wq</code> and press enter.</p>
           <p>Now restart the terminal and try running <code class="highlight">u help</code> or any other util commands.</p>
           <br>
         </div>
@@ -61,7 +63,45 @@
           <p>1. Press the <code class="label highlight">I</code> key on your keyboard.</p>
           <p>2. Hold the down arrow key on your keyboard until your at the bottom of the file.</p>
           <p>3. Type <code class="highlight">alias u="util p"</code> or paste it in by using ctrl+shift+v.</p>
+          <p>Now press the <code class="label highlight">Esc</code> key on your keyboard, type <code class="highlight">:wq</code> and press enter.</p>
           <p>Now restart the terminal and try running your favorite plugin using <code class="highlight">p &lt;plugin name&gt;</code>.</p>
+        </div>
+      </div>
+    </div>
+    <div class="paper-container">
+      <div class="ribbon"></div>
+      <div class="paper">
+        <div class="markdown-container">
+          <h1 class="anchored">Creating plugins</h1>
+          <p>After this tutorial, you have created a plugin that shows "Hello World".</p>
+          <p>Make sure you have a plugins folder, if you don't, run <code class="highlight">util plugin-folder</code>. You can check using <code class="highlight">util plugins</code>.</p>
+          <p>Run <code class="highlight">util createplugin</code> and give the name and description you like, I'll be doing:</p>
+          <div class="highlight"><pre class="highlight"><code class="highlight"><span class="na">ribkix@penguin</span>:<span class="s">~</span>$ <span class="na">util</span> createplugin
+Plugin name: HelloWorld
+Plugin description: Says "Hello World"
+
+Created util_plugins/HelloWorld</code></pre></div>
+          <br>
+          <p>Now, run the following commands:</p>
+          <div class="highlight"><pre class="highlight"><code class="highlight"><span class="na">cd</span> util_plugins
+<span class="na">cd</span> HelloWorld
+<span class="na">vim</span> plugin.sh</code></pre></div>
+          <br>
+          <p>Now add the following code:</p>
+          <div class="highlight"><pre class="highlight"><code class="highlight"><span class="na">echo</span> <span class="nt">"Hello World"</span></code></pre></div>
+          <br>
+          <p><code class="highlight">echo</code> shows the text you specified, to specify the text we want to show, we put it between "". This is called "string". <a href="http://www.linfo.org/echo.html" target="_blank">More information on the echo command</a></p>
+          <p>If you're unfamiliar with vim, here's a step-by-step guide:</p>
+          <p>1. Press the <code class="label highlight">I</code> key on your keyboard.</p>
+          <p>2. Type <code class="highlight">echo "Hello World"</code> or paste it in by using ctrl+shift+v (not recommended).</p>
+          <p>Now press the <code class="label highlight">Esc</code> key on your keyboard, type <code class="highlight">:wq</code> and press enter.</p>
+          <p>After that, run the following commands:</p>
+          <div class="highlight"><pre class="highlight"><code class="highlight"><span class="na">cd</span> ..
+<span class="na">cd</span> ..</code></pre></div>
+          <br>
+          <p>You're done! Now run <code class="highlight">util p HelloWorld</code> or whatever the name is of your plugin and you should see the following:</p>
+           <div class="highlight"><pre class="highlight"><code class="highlight"><span class="na">ribkix@penguin</span>:<span class="s">~</span>$ <span class="na">util</span> p HelloWorld
+Hello World</code></pre></div>
         </div>
       </div>
     </div>
