@@ -2,6 +2,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Util.sh</title>
+    <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
     <link href="https://modesta.alexflipnote.dev/css/modesta.css" type="text/css" rel="stylesheet">
     <script src="https://modesta.alexflipnote.dev/js/modesta.js" type="text/javascript" charset="utf-8"></script>
     <meta name="description" content="Util.sh is a linux script full of commands to make it easier for you to remember very complicated commands or turn multiple commands into one.">
@@ -143,6 +144,7 @@ mv util /usr/local/games/util</code></pre></div>
   function onLoadFunction(){
     var id = window.location.href.substring(window.location.href.lastIndexOf("#") + 1);
     setselected(id);
+    anchors.add();
   }
   
   function home(){
