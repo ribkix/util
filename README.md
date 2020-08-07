@@ -61,6 +61,14 @@ util new `<file name>` `[editor]` - makes a new file
   
 util del `<file name>` - deletes a file
 
+util geturl `<url>` - download file from URL
+
+util newfolder `<folder name>` - makes new folder
+
+util delfolder `<folder name>` - deletes folder
+
+util disk - shows information on your disk space
+
 Packages
 -
 
@@ -133,9 +141,9 @@ util copycmd `<command>` - copies the command specified
 
 util pastecmd `<command>` - pastes the command copied
 
-util geturl `<url>` - download file from URL
-
 util website - goes to the official Util.sh website
+
+util listblock - lists the available block devices of your Linux system
 
 Plugins
 =
