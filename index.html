@@ -125,21 +125,24 @@ mv util /usr/local/games/util</code></pre></div>
   var selected = "home";
   
   function setselected(sel){
-    document.getElementById("nav-" + selected).classList.remove("selected");
-    document.getElementById("nav-" + sel).classList.add("selected");
-    selected = sel;
+    if (document.getElementById("nav-" + selected)){
+      document.getElementById("nav-" + selected).classList.remove("selected");
+      document.getElementById("nav-" + sel).classList.add("selected");
+      selected = sel;
+    }
   }
   
   function gotosection(sec){
-    document.getElementById(sec).scrollIntoView({
-      behavior: 'smooth'
-    })
+    if (document.getElementById(sec)){
+      document.getElementById(sec).scrollIntoView({
+        behavior: 'smooth'
+      })
+    }
   }
   
   function onLoadFunction(){
     var id = window.location.href.substring(window.location.href.lastIndexOf("#") + 1);
-    if (id != null)
-      setselected();
+    setselected(id);
   }
   
   function home(){
