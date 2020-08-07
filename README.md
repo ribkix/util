@@ -149,3 +149,8 @@ Plugins
 =
 
 Get plugins here: https://github.com/ribkix/util-plugins
+
+Tutorials
+=
+
+See tutorials here: http://utilsh.tk/tutorials
