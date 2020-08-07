@@ -1,12 +1,10 @@
-=+= What's new in Version 2020.8.6 =+=
+=+= What's new in Version 2020.8.7 =+=
 
 - A bit of polishing
-- Added plugins
-- Added getchangelog command
-- Got rid of the wget output
-- Added copycmd command
-- Added pastecmd command
-- Added geturl command
-- Added multiple argument support
-- Added website command (NEW WEBSITE!!!)
+- Added createplugin command
+- Removed ls output
+- Added newfolder command
+- Added delfolder command
+- Added listblock command
+- Added disk command
 - Bug fixes
