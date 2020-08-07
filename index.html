@@ -70,7 +70,11 @@ mv util /usr/local/games/util</code></pre></div>
       <p>util copy <code class="highlight">&lt;file to copy&gt;</code> <code class="highlight">&lt;destination to paste&gt;</code> - copies and pastes file</p>
       <p>util move <code class="highlight">&lt;file to move&gt;</code> <code class="highlight">&lt;destination to move it to&gt;</code> - moves a file</p>
       <p>util new <code class="highlight">&lt;file name&gt;</code> <code class="highlight">[editor]</code> - makes a new file</p>
-      <p>util del <code class="highlight">&lt;file name&gt;</code> deletes a file</p>
+      <p>util del <code class="highlight">&lt;file name&gt;</code> - deletes a file</p>
+      <p>util geturl <code class="highlight">&lt;url&gt;</code> - download file from URL</p>
+      <p>util newfolder <code class="highlight">&lt;folder name&gt;</code> - makes a new folder</p>
+      <p>util delfolder <code class="highlight">&lt;folder name&gt;</code> - deletes folder</p>
+      <p>util disk - shows information on your disk space</p>
       <h2>Packages</h2>
       <p><code class="highlight">[S]</code> util install <code class="highlight">&lt;package&gt;</code> - installs what package you specified (root required)</p>
       <p>util list - shows lists of packages you can install</p>
@@ -81,17 +85,34 @@ mv util /usr/local/games/util</code></pre></div>
       <p><code class="highlight">[S]</code> util reinstall <code class="highlight">&lt;package&gt;</code> - reinstalls what package you specified (root required)</p>
       <p><code class="highlight">[S]</code> util autoremove - automatically removes all unused packages (root required)</p>
       <p><code class="highlight">[S]</code> util upgrade - upgrades the system by installing/upgrading packages (root required)</p>
-      <h2>Miscellaneous</h2>
-      <p>util executable <code class="highlight">&lt;file&gt;</code> - makes the specified file an executable (root required)</p>
-      <p>util root - login to root</p>
-      <p>util create-root - create root</p>
-      <p><code class="highlight">[S]</code> util deb <code class="highlight">&lt;.deb file&gt;</code> - install deb file (root required)</p>
       <h2>Manage Util</h2>
       <p>util refresh - updates util with new code in the .sh file</p>
       <p>util getupdate - updates util from the internet (root required)</p>
       <p>util changelog - shows the changelog</p>
       <p>util version - shows current version you're running</p>
       <p>util getversion - gets and shows currently available version</p>
+      <p>util getchangelog - gets and shows current changelog</p>
+      <h2>Plugins</h2>
+      <p>util plugin-folder - creates plugin folder</p>
+      <p>util plugins - view your installed plugins</p>
+      <p>util library - sends you to the plugin library</p>
+      <p>util getviewplugin <code class="highlight">&lt;plugin&gt;</code> - views the plugin you specified on the internet</p>
+      <p>util downloadplugin <code class="highlight">&lt;plugin&gt;</code> - download the plugin you specified from the internet</p>
+      <p>util p <code class="highlight">&lt;plugin&gt;</code> - run plugin</p>
+      <p>util viewplugin <code class="highlight">&lt;plugin&gt;</code> - views installed plugin you specified</p>
+      <p>util deleteplugin <code class="highlight">&lt;plugin&gt;</code> - deleted installed plugin you specified</p>
+      <p>util getplugins <code class="highlight">&lt;plugin&gt;</code> - view all available plugins</p>
+      <p>util createplugin - creates plugin</p>
+      <p></p>
+      <h2>Miscellaneous</h2>
+      <p>util executable <code class="highlight">&lt;file&gt;</code> - makes the specified file an executable (root required)</p>
+      <p>util root - login to root</p>
+      <p>util create-root - create root</p>
+      <p><code class="highlight">[S]</code> util deb <code class="highlight">&lt;.deb file&gt;</code> - install deb file (root required)</p>
+      <p>util copycmd <code class="highlight">&lt;commands&gt;</code> - copies the command specified</p>
+      <p>util pastecmd - pastes the command copied</p>
+      <p>util website - goes to the official Util.sh website</p>
+      <p>util listblock - lists the available block devices of your Linux system</p>
       <br>
     </div>
     <div id="plugins" class="markdown-container">
