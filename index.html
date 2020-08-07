@@ -126,15 +126,19 @@ mv util /usr/local/games/util</code></pre></div>
   var selected = "home";
   
   function setselected(sel){
-    document.getElementById("nav-" + selected).classList.remove("selected");
-    document.getElementById("nav-" + sel).classList.add("selected");
-    selected = sel;
+    if (document.getElementById(sel) != null){
+      document.getElementById("nav-" + selected).classList.remove("selected");
+      document.getElementById("nav-" + sel).classList.add("selected");
+      selected = sel;
+    }
   }
   
   function gotosection(sec){
-    document.getElementById(sec).scrollIntoView({
-      behavior: 'smooth'
-    })
+    if (document.getElementById(sec) != null){
+      document.getElementById(sec).scrollIntoView({
+        behavior: 'smooth'
+      })
+    }
   }
   
   document.addEventListener('DOMContentLoaded', function(event) {
@@ -144,6 +148,7 @@ mv util /usr/local/games/util</code></pre></div>
       icon: '#'
     };
     anchors.add(".anchored");
+    setselected(window.location.href.substring(window.location.href.lastIndexOf("#") + 1));
   });
   
   function home(){
