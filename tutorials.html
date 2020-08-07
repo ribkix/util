@@ -12,14 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
     <link rel="icon" href="https://rbsurl.tk/f9T14V">
   </head>
-  <body onload="onLoadFunction();" class="github-font-standard">
+  <body class="github-font-standard">
     <header class="nav-bar" style="position: fixed; width: 100%; top: 0; left: 0; right: 0; bottom: 0;">
       <span class="nav-bars"></span>
       <section class="nav">
         <span class="nav-close"></span>
         <div class="nav-scroller">
-          <a id="nav-home" class="selected" href="http://utilsh.tk/">Home</a>
-          <a id="nav-tutorials" href="#tutorials">Tutorials</a>
+          <a id="nav-home" href="http://utilsh.tk/">Home</a>
+          <a id="nav-tutorials" class="selected" href="#tutorials">Tutorials</a>
           <a id="nav-u-alias" class="indent-1" href='#u-alias'>  "u" alias</a>
         </div>
       </section>
@@ -45,7 +45,7 @@
   </body>
 </html>
 <script>
-  var selected = "u-alias";
+  var selected = "tutorials";
   
   function setselected(sel){
     if (document.getElementById(sel) != null){
