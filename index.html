@@ -137,7 +137,9 @@ mv util /usr/local/games/util</code></pre></div>
   }
   
   function onLoadFunction(){
-    setselected(window.location.href.substring(window.location.href.lastIndexOf("#") + 1));
+    var id = window.location.href.substring(window.location.href.lastIndexOf("#") + 1);
+    if (id != null)
+      setselected();
   }
   
   function home(){
