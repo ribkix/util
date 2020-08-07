@@ -1,27 +1,25 @@
 #!/bin/bash
 
 if [[ $1 = "changelog" ]]; then
-    echo "=+= What's new in Version 2020.8.6 =+="
+    echo "=+= What's new in Version 2020.8.7 =+="
     echo ""
     echo "- A bit of polishing"
-    echo "- Added plugins"
-    echo "- Added getchangelog command"
-    echo "- Got rid of the wget output"
-    echo "- Added copycmd command"
-    echo "- Added pastecmd command"
-    echo "- Added geturl command"
-    echo "- Added multiple argument support"
-    echo "- Added website command (NEW WEBSITE!!!)"
+    echo "- Added createplugin command"
+    echo "- Removed ls output"
+    echo "- Added newfolder command"
+    echo "- Added delfolder command"
+    echo "- Added listblock command"
+    echo "- Added disk command"
     echo "- Bug fixes"
 elif [[ $1 =  "executable" ]]; then
     if [[ $# = 2 ]]; then
         if [[ $EUID = 0 ]]; then
             cp $2 ${2%%.*}
-            ls -l ${2%%.*}
+            ls -l ${2%%.*} > /dev/null 2>&1
             chmod u+x ${2%%.*}
-            ls -l ${2%%.*}
+            ls -l ${2%%.*} > /dev/null 2>&1
             chmod a+x ${2%%.*}
-            ls -l ${2%%.*}
+            ls -l ${2%%.*} > /dev/null 2>&1
             mv ${2%%.*} /usr/local/games/${2%%.*}
             echo "Done, run \"${2%%.*}\""
         else
@@ -321,11 +319,11 @@ elif [[ $1 = "del" ]]; then
 elif [[ $1 =  "refresh" ]]; then
     if [[ $EUID = 0 ]]; then
         cp util.sh util
-        ls -l util
+        ls -l util > /dev/null 2>&1
         chmod u+x util
-        ls -l util
+        ls -l util > /dev/null 2>&1
         chmod a+x util
-        ls -l util
+        ls -l util > /dev/null 2>&1
         mv util /usr/local/games/util
         echo "Done"
     else
@@ -335,11 +333,11 @@ elif [[ $1 = "getupdate" ]]; then
     if [[ $EUID = 0 ]]; then
         wget https://raw.githubusercontent.com/ribkix/util/master/util.sh -O util.sh > /dev/null 2>&1
         cp util.sh util
-        ls -l util
+        ls -l util > /dev/null 2>&1
         chmod u+x util
-        ls -l util
+        ls -l util > /dev/null 2>&1
         chmod a+x util
-        ls -l util
+        ls -l util > /dev/null 2>&1
         mv util /usr/local/games/util
         echo "Done"
         wget https://raw.githubusercontent.com/ribkix/util/master/changelog.txt -O util_changelog.txt > /dev/null 2>&1
@@ -349,7 +347,7 @@ elif [[ $1 = "getupdate" ]]; then
         echo "This command must be run under root."
     fi
 elif [[ $1 = "version" ]]; then
-    echo "2020.8.6"
+    echo "2020.8.7"
 elif [[ $1 = "getversion" ]]; then
     wget https://raw.githubusercontent.com/ribkix/util/master/version.txt -O util_version.txt > /dev/null 2>&1
     printf '%b\n' "$(cat util_version.txt)"
@@ -418,7 +416,6 @@ elif [[ $1 = "p" ]]; then
 elif [[ $1 = "viewplugin" ]]; then
     if [[ $# = 2 ]]; then
         if [[ -d util_plugins/$2 ]]; then
-            echo "Downloaded from: https://github.com/ribkix/util-plugins/blob/master/plugins/$2"
             echo "Name: $2"
             echo "Description:"
             printf '%b\n' "$(cat util_plugins/$2/description.txt)"
@@ -462,6 +459,30 @@ elif [[ $1 = "geturl" ]]; then
     fi
 elif [[ $1 = "website" ]]; then
     xdg-open http://utilsh.tk/
+elif [[ $1 = "createplugin" ]]; then
+    read -p "Plugin name: " createplugin_name
+    read -p "Plugin description: " createplugin_description
+    echo ""
+    mkdir -p util_plugins/$createplugin_name
+    echo $createplugin_description > util_plugins/$createplugin_name/description.txt
+    > util_plugins/$createplugin_name/plugin.sh
+    echo "Created util_plugins/$createplugin_name"
+elif [[ $1 = "newfolder" ]]; then
+    if [[ $# -ge 2 ]]; then
+        mkdir ${*:2}
+    else
+        echo "Please specify the folder name you want to create."
+    fi
+elif [[ $1 = "delfolder" ]]; then
+    if [[ $# -ge 2 ]]; then
+        rmdir ${*:2}
+    else
+        echo "Please specify the folder you want to delete."
+    fi
+elif [[ $1 = "listblock" ]]; then
+    lsblk
+elif [[ $1 = "disk" ]]; then
+    df
 elif [[ $1 = "help" ]]; then
     echo "[] - optional argument"
     echo "<> - required argument"
@@ -475,6 +496,10 @@ elif [[ $1 = "help" ]]; then
     echo "util move <file to move> <destination to move it to> - moves a file"
     echo "util new <file name> [editor] - makes a new file"
     echo "util del <file name> - deletes a file"
+    echo "util geturl <url> - download file from URL"
+    echo "util newfolder <folder name> - makes new folder"
+    echo "util delfolder <folder name> - deletes folder"
+    echo "util disk - shows information on your disk space"
     echo ""
     echo "PACKAGES"
     echo ""
@@ -508,6 +533,7 @@ elif [[ $1 = "help" ]]; then
     echo "util viewplugin <plugin> - view installed plugin you specified."
     echo "util deleteplugin <plugin> - deletes installed plugin you specified."
     echo "util getplugins - view all available plugins."
+    echo "util createplugin - creates plugin"
     echo ""
     echo "MISCELLANEOUS"
     echo ""
@@ -517,8 +543,8 @@ elif [[ $1 = "help" ]]; then
     echo "[S] util deb <.deb file> - install deb file (root required)"
     echo "util copycmd <command> - copies the command specified."
     echo "util pastecmd - pastes the command copied."
-    echo "util geturl <url> - download file from URL"
     echo "util website - goes to the official Util.sh website"
+    echo "util listblock - lists the available block devices of your Linux system"
  else
     echo "Invalid command \"$1\""
     echo "Try running \"util help\""
