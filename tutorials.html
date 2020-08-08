@@ -73,12 +73,12 @@
       <div class="paper">
         <div class="markdown-container">
           <h1 class="anchored">Creating plugins</h1>
-          <p>After this tutorial, you have created a plugin that shows "Hello World".</p>
+          <p>After this tutorial, you have created a plugin that shows the text you specified.</p>
           <p>Make sure you have a plugins folder, if you don't, run <code class="highlight">util plugin-folder</code>. You can check using <code class="highlight">util plugins</code>.</p>
           <p>Run <code class="highlight">util createplugin</code> and give the name and description you like, I'll be doing:</p>
           <div class="highlight"><pre class="highlight"><code class="highlight"><span class="na">ribkix@penguin</span>:<span class="s">~</span>$ <span class="na">util</span> createplugin
 Plugin name: HelloWorld
-Plugin description: Says "Hello World"
+Plugin description: Says what you specified
 
 Created util_plugins/HelloWorld</code></pre></div>
           <br>
@@ -88,20 +88,22 @@ Created util_plugins/HelloWorld</code></pre></div>
 <span class="na">vim</span> plugin.sh</code></pre></div>
           <br>
           <p>Now add the following code:</p>
-          <div class="highlight"><pre class="highlight"><code class="highlight"><span class="na">echo</span> <span class="nt">"Hello World"</span></code></pre></div>
+          <div class="highlight"><pre class="highlight"><code class="highlight"><span class="na">echo</span> $1</code></pre></div>
           <br>
-          <p><code class="highlight">echo</code> shows the text you specified, to specify the text we want to show, we put it between "". This is called "string". <a href="http://www.linfo.org/echo.html" target="_blank">More information on the echo command</a></p>
+          <p><code class="highlight">echo</code> shows the text you specified, now we add a $, which means variable and we add the argument number to it. <a href="http://www.linfo.org/echo.html" target="_blank">More information on the echo command</a>, <a href="http://www.compciv.org/topics/bash/variables-and-substitution/" target="_blank">More information on variables</a>, <a href="https://www.lifewire.com/pass-arguments-to-bash-script-2200571" target="_blank">More information on argument variables</a></p>
           <p>If you're unfamiliar with vim, here's a step-by-step guide:</p>
           <p>1. Press the <code class="label highlight">I</code> key on your keyboard.</p>
-          <p>2. Type <code class="highlight">echo "Hello World"</code> or paste it in by using ctrl+shift+v (not recommended).</p>
+          <p>2. Type <code class="highlight">echo $1</code> or paste it in by using ctrl+shift+v (not recommended).</p>
           <p>Now press the <code class="label highlight">Esc</code> key on your keyboard, type <code class="highlight">:wq</code> and press enter.</p>
           <p>After that, run the following commands:</p>
           <div class="highlight"><pre class="highlight"><code class="highlight"><span class="na">cd</span> ..
 <span class="na">cd</span> ..</code></pre></div>
           <br>
           <p>You're done! Now run <code class="highlight">util p HelloWorld</code> or whatever the name is of your plugin and you should see the following:</p>
-           <div class="highlight"><pre class="highlight"><code class="highlight"><span class="na">ribkix@penguin</span>:<span class="s">~</span>$ <span class="na">util</span> p HelloWorld
-Hello World</code></pre></div>
+           <div class="highlight"><pre class="highlight"><code class="highlight"><span class="na">ribkix@penguin</span>:<span class="s">~</span>$ <span class="na">util</span> p HelloWorld <span href="nt">"Hello everyone!"</span>
+Hello everyone!</code></pre></div>
+          <br>
+          <p>If you want to make some more advanced plugins but you have no bash knowledge, <a href="https://devhints.io/bash" target="_blank">here is a nice cheat sheet</a>.</p>
         </div>
       </div>
     </div>
