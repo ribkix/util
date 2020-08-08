@@ -9,3 +9,5 @@
 > [Plugins](http://utilsh.tk/#plugins)
 
 > [Tutorials](http://utilsh.tk/#tutorials)
+
+> [Blog](http://utilsh.tk/#blog)
