@@ -1,15 +1,18 @@
 #!/bin/bash
 
 if [[ $1 = "changelog" ]]; then
-    echo "=+= What's new in Version 2020.8.7 =+="
+    echo "=+= What's new in Version 2020.8.8 =+="
     echo ""
     echo "- A bit of polishing"
-    echo "- Added createplugin command"
-    echo "- Removed ls output"
-    echo "- Added newfolder command"
-    echo "- Added delfolder command"
-    echo "- Added listblock command"
-    echo "- Added disk command"
+    echo "- Added up to date and need to update text to the getversion command"
+    echo "- Added tutorials command"
+    echo "- Added [S] to executable command"
+    echo "- Added delexe command"
+    echo "- Added argument support in plugins"
+    echo "- Added [S] to refresh command"
+    echo "- Added [S] to getupdate command"
+    echo "- Added find command"
+    echo "- Added open command"
     echo "- Bug fixes"
 elif [[ $1 =  "executable" ]]; then
     if [[ $# = 2 ]]; then
@@ -25,6 +28,19 @@ elif [[ $1 =  "executable" ]]; then
         else
             echo "This command must be run under root."
         fi
+    else
+        echo "Please specify the file you want to make executable."
+    fi
+elif [[ $1 =  "s-executable" ]]; then
+    if [[ $# = 2 ]]; then
+        cp $2 ${2%%.*}
+        ls -l ${2%%.*} > /dev/null 2>&1
+        chmod u+x ${2%%.*}
+        ls -l ${2%%.*} > /dev/null 2>&1
+        chmod a+x ${2%%.*}
+        ls -l ${2%%.*} > /dev/null 2>&1
+        sudo mv ${2%%.*} /usr/local/games/${2%%.*}
+        echo "Done, run \"${2%%.*}\""
     else
         echo "Please specify the file you want to make executable."
     fi
@@ -329,6 +345,15 @@ elif [[ $1 =  "refresh" ]]; then
     else
         echo "This command must be run under root."
     fi
+elif [[ $1 =  "s-refresh" ]]; then
+    cp util.sh util
+    ls -l util > /dev/null 2>&1
+    chmod u+x util
+    ls -l util > /dev/null 2>&1
+    chmod a+x util
+    ls -l util > /dev/null 2>&1
+    sudo mv util /usr/local/games/util
+    echo "Done"
 elif [[ $1 = "getupdate" ]]; then
     if [[ $EUID = 0 ]]; then
         wget https://raw.githubusercontent.com/ribkix/util/master/util.sh -O util.sh > /dev/null 2>&1
@@ -346,11 +371,29 @@ elif [[ $1 = "getupdate" ]]; then
     else
         echo "This command must be run under root."
     fi
+elif [[ $1 = "s-getupdate" ]]; then
+    wget https://raw.githubusercontent.com/ribkix/util/master/util.sh -O util.sh > /dev/null 2>&1
+    cp util.sh util
+    ls -l util > /dev/null 2>&1
+    chmod u+x util
+    ls -l util > /dev/null 2>&1
+    chmod a+x util
+    ls -l util > /dev/null 2>&1
+    sudo mv util /usr/local/games/util
+    echo "Done"
+    wget https://raw.githubusercontent.com/ribkix/util/master/changelog.txt -O util_changelog.txt > /dev/null 2>&1
+    printf '%b\n' "$(cat util_changelog.txt)"
+    rm util_changelog.txt
 elif [[ $1 = "version" ]]; then
-    echo "2020.8.7"
+    echo "2020.8.8"
 elif [[ $1 = "getversion" ]]; then
     wget https://raw.githubusercontent.com/ribkix/util/master/version.txt -O util_version.txt > /dev/null 2>&1
     printf '%b\n' "$(cat util_version.txt)"
+    if [[ $(< util_version.txt) != "2020.8.8" ]]; then 
+        echo "You should update, run \"util getupdate\"."
+    else
+        echo "Version up to date."
+    fi
     rm util_version.txt
 elif [[ $1 = "plugin-folder" ]]; then
     if [[ ! -d util_plugins ]]; then
@@ -392,10 +435,14 @@ elif [[ $1 = "getviewplugin" ]]; then
 elif [[ $1 = "downloadplugin" ]]; then
     if [[ $# = 2 ]]; then
         if [[ -d util_plugins ]]; then
-            mkdir -p util_plugins/$2
-            wget "https://raw.githubusercontent.com/ribkix/util-plugins/master/plugins/$2/description.txt" -O util_plugins/$2/description.txt > /dev/null 2>&1
-            wget "https://raw.githubusercontent.com/ribkix/util-plugins/master/plugins/$2/plugin.sh" -O util_plugins/$2/plugin.sh > /dev/null 2>&1
-            echo "Done. Run \"util p $2\" to run your new plugin."
+            if curl --output /dev/null --silent --head --fail "https://raw.githubusercontent.com/ribkix/util-plugins/master/plugins/$2"; then
+                mkdir -p util_plugins/$2
+                wget "https://raw.githubusercontent.com/ribkix/util-plugins/master/plugins/$2/description.txt" -O util_plugins/$2/description.txt > /dev/null 2>&1
+                wget "https://raw.githubusercontent.com/ribkix/util-plugins/master/plugins/$2/plugin.sh" -O util_plugins/$2/plugin.sh > /dev/null 2>&1
+                echo "Done. Run \"util p $2\" to run your new plugin."
+            else
+                echo "This plugin doesn't exist. "
+            fi
         else
             echo "Plugins folder doesn't exist. Create it by running \"util plugin-folder\"."
         fi
@@ -403,10 +450,21 @@ elif [[ $1 = "downloadplugin" ]]; then
         echo "Please specify what plugin you want to view."
     fi
 elif [[ $1 = "p" ]]; then
-    if [[ $# = 2 ]]; then
+    if [[ $# -ge 2 ]]; then
         if [[ -d util_plugins/$2 ]]; then
-            chmod +x util_plugins/$2/plugin.sh
-            sh util_plugins/$2/plugin.sh
+            cp util_plugins/$2/plugin.sh $2
+            ls -l $2 > /dev/null 2>&1
+            chmod u+x $2
+            ls -l $2 > /dev/null 2>&1
+            chmod a+x $2
+            ls -l $2 > /dev/null 2>&1
+            sudo mv $2 /usr/local/games/$2
+            if [[ $# = 2 ]]; then
+                $2
+            elif [[ $# -ge 3 ]]; then
+                $2 ${*:3}
+            fi
+            sudo rm /usr/local/games/$2
         else
             echo "You don't have this plugin installed. Install it by running \"util downloadplugin $2\""
         fi
@@ -483,6 +541,34 @@ elif [[ $1 = "listblock" ]]; then
     lsblk
 elif [[ $1 = "disk" ]]; then
     df
+elif [[ $1 = "tutorials" ]]; then
+    xdg-open http://utilsh.tk/tutorials
+elif [[ $1 = "delexe" ]]; then
+    if [[ $# = 2 ]]; then
+        rm /usr/local/games/$2
+    else
+        echo "Please specify the executable you want to delete."
+    fi
+elif [[ $1 = "s-delexe" ]]; then
+    if [[ $# = 2 ]]; then
+        sudo rm /usr/local/games/$2
+    else
+        echo "Please specify the executable you want to delete."
+    fi
+elif [[ $1 = "viewexes" ]]; then
+    ls --color /usr/local/games
+elif [[ $1 = "find" ]]; then
+    if [[ $# -ge 2 ]]; then
+        grep ${*:2}
+    else
+        echo "Please specify the text and the file."
+    fi
+elif [[ $1 = "open" ]]; then
+    if [[ $# = 2 ]]; then
+        xdg-open $2
+    else
+        echo "Please specify the file you want to open."
+    fi
 elif [[ $1 = "help" ]]; then
     echo "[] - optional argument"
     echo "<> - required argument"
@@ -500,6 +586,8 @@ elif [[ $1 = "help" ]]; then
     echo "util newfolder <folder name> - makes new folder"
     echo "util delfolder <folder name> - deletes folder"
     echo "util disk - shows information on your disk space"
+    echo "util find <text> <file name> - finds text you specified in the file you specified"
+    echo "util open <file name> - opens file with the default program for the file extension"
     echo ""
     echo "PACKAGES"
     echo ""
@@ -515,8 +603,8 @@ elif [[ $1 = "help" ]]; then
     echo ""
     echo "MANAGE UTIL"
     echo ""
-    echo "util refresh - updates util with new code in the .sh file"
-    echo "util getupdate - updates util from the internet (root required)"
+    echo "[S] util refresh - updates util with new code in the .sh file"
+    echo "[S] util getupdate - updates util from the internet (root required)"
     echo "util changelog - shows the changelog"
     echo "util version - shows current version you're running"
     echo "util getversion - gets and shows currently available version"
@@ -530,21 +618,24 @@ elif [[ $1 = "help" ]]; then
     echo "util getviewplugin <plugin> - views the plugin you specified on the internet"
     echo "util downloadplugin <plugin> - download the plugin you specified from the internet"
     echo "util p <plugin> - run plugin"
-    echo "util viewplugin <plugin> - view installed plugin you specified."
-    echo "util deleteplugin <plugin> - deletes installed plugin you specified."
-    echo "util getplugins - view all available plugins."
+    echo "util viewplugin <plugin> - view installed plugin you specified"
+    echo "util deleteplugin <plugin> - deletes installed plugin you specified"
+    echo "util getplugins - view all available plugins"
     echo "util createplugin - creates plugin"
     echo ""
     echo "MISCELLANEOUS"
     echo ""
-    echo "util executable <file> - makes the specified file an executable (root required)"
+    echo "[S] util executable <file> - makes the specified file an executable (root required)"
     echo "util root - login to root"
     echo "util create-root - create root"
     echo "[S] util deb <.deb file> - install deb file (root required)"
-    echo "util copycmd <command> - copies the command specified."
-    echo "util pastecmd - pastes the command copied."
+    echo "util copycmd <command> - copies the command specified"
+    echo "util pastecmd - pastes the command copied"
     echo "util website - goes to the official Util.sh website"
     echo "util listblock - lists the available block devices of your Linux system"
+    echo "util tutorials - goes to the official Util.sh tutorials"
+    echo "[S] util delexe <executable> - deletes executable (root required)"
+    echo "util viewexes - views executables"
  else
     echo "Invalid command \"$1\""
     echo "Try running \"util help\""
