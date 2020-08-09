@@ -80,12 +80,10 @@
 Plugin name: HelloWorld
 Plugin description: Says what you specified
 
-Created util_plugins/HelloWorld</code></pre></div>
+Created util_plugins/HelloWorld, edit it using util editplugin HelloWorld &lt;description | plugin&gt; [editor]</code></pre></div>
           <br>
           <p>Now, run the following commands:</p>
-          <div class="highlight"><pre class="highlight"><code class="highlight"><span class="na">cd</span> util_plugins
-<span class="na">cd</span> HelloWorld
-<span class="na">vim</span> plugin.sh</code></pre></div>
+          <div class="highlight"><pre class="highlight"><code class="highlight"><span class="na">util</span> editplugin HelloWorld plugin vim</code></pre></div>
           <br>
           <p>Now add the following code:</p>
           <div class="highlight"><pre class="highlight"><code class="highlight"><span class="na">echo</span> <span class="nt">"$1"</span></code></pre></div>
