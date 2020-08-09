@@ -1,13 +1,11 @@
-=+= What's new in Version 2020.8.8 =+=
+=+= What's new in Version 2020.8.9 =+=
 
 - A bit of polishing
 - Added up to date and need to update text to the getversion command
-- Added tutorials command
-- Added [S] to executable command
-- Added delexe command
-- Added argument support in plugins
-- Added [S] to refresh command
-- Added [S] to getupdate command
-- Added find command
-- Added open command
+- Added editexe command
+- Added editplugin command
+- Added size command
+- Added view command
+- Added generateupload command
+- Added sp command
 - Bug fixes
