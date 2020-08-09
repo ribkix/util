@@ -20,6 +20,7 @@
         <div class="nav-scroller">
           <a id="nav-home" href="http://utilsh.tk/">Home</a>
           <a id="nav-blog" class="selected" href="#blog">Blog</a>
+          <a id="nav-2020-8-9" class="indent-2" href='#2020-8-9'>2020.8.9</a>
           <a id="nav-2020-8-8" class="indent-2" href='#2020-8-8'>2020.8.8</a>
         </div>
       </section>
@@ -30,6 +31,38 @@
       <h1 id="blog" style="font-size:7em;">Blog</h1>
       <p>Read about all Util.sh updates and announcements.</p>
       <br>
+    </div>
+    <div class="paper-container">
+      <div class="ribbon"></div>
+      <div class="paper">
+        <div class="markdown-container">
+          <h1 class="anchored">2020.8.9</h1>
+          <h2>A bit of polishing</h2>
+          <p>Added "argument" in help legend and added a missing dot to the error message of not having the plugin you specified in the p command.</p>
+          <h2>Added editexe command</h2>
+          <p>This command will edit an executable you specified in your favorite editor.</p>
+          <p>util editexe <code class="highlight">&lt;executable&gt;</code> <code class="highlight">[editor]</code> - edits plugin you specified with the editor you specified, if there is no editor specified it will use your default editor</p>
+          <h2>Added editplugin command</h2>
+          <p>This command will edit the plugin you specified's description or code with your favorite editor.</p>
+          <p>util editplugin <code class="highlight">&lt;plugin&gt;</code> <code class="highlight">&lt;part: description | plugin&gt;</code> <code class="highlight">[editor]</code> - edits executable with the editor you specified, if you specified no editor it opens it in your default editor</p>
+          <p>With this, we added <code class="highlight">&lt;argument: thing1 | thing2&gt; - select one of these options</code> to the help command's legend due to this command having that.</p>
+          <p>With this, we also updated the output of the createplugin command to show how to edit the plugin.</p>
+          <h2>Added size command</h2>
+          <p>This command will show the size of the file you specified.</p>
+          <p>util size <code class="highlight">&lt;file name&gt;</code> - shows the size of the file you specified</p>
+          <h2>Added view command</h2>
+          <p>This command will show all files in your current directory or the directory you specified if specified with the optional options you specified.</p>
+          <p>util view <code class="highlight">[path]</code> <code class="highlight">[options]</code> - views the files of the current path or if specified the specified path with optional options</p>
+          <h2>Added generateupload command</h2>
+          <p>This command will generate the upload code for the plugin you specified.</p>
+          <p>util generateupload <code class="highlight">&lt;plugin&gt;</code> - generates upload code for plugin</p>
+          <h2>Added sp command</h2>
+          <p>This command will run the plugin you specified under sudo if needed.</p>
+          <p>util sp <code class="highlight">&lt;plugin&gt;</code> - run plugin under sudo</p>
+          <h2>Bug fixes</h2>
+          <p>In plugins there is a problem with arguments with spaces but now this is fixed.</p>
+        </div>
+      </div>
     </div>
     <div class="paper-container">
       <div class="ribbon"></div>
