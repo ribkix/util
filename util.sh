@@ -1,18 +1,17 @@
 #!/bin/bash
 
+version="2020.8.9"
+
 if [[ $1 = "changelog" ]]; then
-    echo "=+= What's new in Version 2020.8.8 =+="
+    echo "=+= What's new in Version 2020.8.9 =+="
     echo ""
     echo "- A bit of polishing"
-    echo "- Added up to date and need to update text to the getversion command"
-    echo "- Added tutorials command"
-    echo "- Added [S] to executable command"
-    echo "- Added delexe command"
-    echo "- Added argument support in plugins"
-    echo "- Added [S] to refresh command"
-    echo "- Added [S] to getupdate command"
-    echo "- Added find command"
-    echo "- Added open command"
+    echo "- Added editexe command"
+    echo "- Added editplugin command"
+    echo "- Added size command"
+    echo "- Added view command"
+    echo "- Added generateupload command"
+    echo "- Added sp command"
     echo "- Bug fixes"
 elif [[ $1 =  "executable" ]]; then
     if [[ $# = 2 ]]; then
@@ -385,11 +384,11 @@ elif [[ $1 = "s-getupdate" ]]; then
     printf '%b\n' "$(cat util_changelog.txt)"
     rm util_changelog.txt
 elif [[ $1 = "version" ]]; then
-    echo "2020.8.8"
+    echo "$version"
 elif [[ $1 = "getversion" ]]; then
     wget https://raw.githubusercontent.com/ribkix/util/master/version.txt -O util_version.txt > /dev/null 2>&1
     printf '%b\n' "$(cat util_version.txt)"
-    if [[ $(< util_version.txt) != "2020.8.8" ]]; then 
+    if [[ $(< util_version.txt) != "$version" ]]; then 
         echo "You should update, run \"util getupdate\"."
     else
         echo "Version up to date."
@@ -452,21 +451,27 @@ elif [[ $1 = "downloadplugin" ]]; then
 elif [[ $1 = "p" ]]; then
     if [[ $# -ge 2 ]]; then
         if [[ -d util_plugins/$2 ]]; then
-            cp util_plugins/$2/plugin.sh $2
-            ls -l $2 > /dev/null 2>&1
-            chmod u+x $2
-            ls -l $2 > /dev/null 2>&1
-            chmod a+x $2
-            ls -l $2 > /dev/null 2>&1
-            sudo mv $2 /usr/local/games/$2
             if [[ $# = 2 ]]; then
-                $2
+                bash util_plugins/$2/plugin.sh
             elif [[ $# -ge 3 ]]; then
-                $2 ${*:3}
+                bash util_plugins/$2/plugin.sh "${*:3}"
             fi
-            sudo rm /usr/local/games/$2
         else
-            echo "You don't have this plugin installed. Install it by running \"util downloadplugin $2\""
+            echo "You don't have this plugin installed. Install it by running \"util downloadplugin $2\"."
+        fi
+    else
+        echo "Please specify what plugin you want to run."
+    fi
+elif [[ $1 = "sp" ]]; then
+    if [[ $# -ge 2 ]]; then
+        if [[ -d util_plugins/$2 ]]; then
+            if [[ $# = 2 ]]; then
+                sudo bash util_plugins/$2/plugin.sh
+            elif [[ $# -ge 3 ]]; then
+                sudo bash util_plugins/$2/plugin.sh "${*:3}"
+            fi
+        else
+            echo "You don't have this plugin installed. Install it by running \"util downloadplugin $2\"."
         fi
     else
         echo "Please specify what plugin you want to run."
@@ -524,7 +529,7 @@ elif [[ $1 = "createplugin" ]]; then
     mkdir -p util_plugins/$createplugin_name
     echo $createplugin_description > util_plugins/$createplugin_name/description.txt
     > util_plugins/$createplugin_name/plugin.sh
-    echo "Created util_plugins/$createplugin_name"
+    echo "Created util_plugins/$createplugin_name, edit it using util editplugin $createplugin_name <description | plugin> [editor]"
 elif [[ $1 = "newfolder" ]]; then
     if [[ $# -ge 2 ]]; then
         mkdir ${*:2}
@@ -569,10 +574,95 @@ elif [[ $1 = "open" ]]; then
     else
         echo "Please specify the file you want to open."
     fi
+elif [[ $1 = "editexe" ]]; then
+    if [[ $# = 2 ]]; then
+        xdg-open /usr/local/games/$2
+    elif [[ $# = 3 ]]; then
+        $3 /usr/local/games/$2
+    else
+        echo "Please specify the executable and optionally the editor."
+    fi
+elif [[ $1 = "editplugin" ]]; then
+    if [[ $# = 3 ]]; then
+        if [[ $3 = description ]]; then 
+            xdg-open util_plugins/$2/description.txt
+        elif [[ $3 = plugin ]]; then 
+            xdg-open util_plugins/$2/plugin.sh
+        else
+            echo "Invalid argument \"$2\", it can be \"description\" or \"plugin\"."
+        fi
+    elif [[ $# = 4 ]]; then
+        if [[ $3 = description ]]; then 
+            $4 util_plugins/$2/description.txt
+        elif [[ $3 = plugin ]]; then 
+            $4 util_plugins/$2/plugin.sh
+        else
+            echo "Invalid argument \"$2\", it can be \"description\" or \"plugin\"."
+        fi
+    else
+        echo "Please specify what plugin you want to edit, what part you want to edit and optionally the editor."
+    fi
+elif [[ $1 = "size" ]]; then
+    if [[ $# -ge 2 ]]; then
+        du -sh ${*:2}
+    else
+        echo "Please specify the file you want to view the size of."
+    fi
+elif [[ $1 = "view" ]]; then
+    if [[ $# = 2 ]]; then 
+        ls --color $2
+    elif [[ $# -ge 2 ]]; then
+        ls --color $2 ${*:3}
+    else
+        ls --color
+    fi
+elif [[ $1 = "generateupload" ]]; then
+    if [[ $# = 2 ]]; then
+        if [[ -d util_plugins/$2 ]]; then
+            read -p "Screenshots (Image URL) (seperate with spaces) (leave blank to not do): " generateupload_screenshots
+            read -p "Usage (leave blank to not do): " generateupload_usage
+            read -p "Website (leave blank to not do): " generateupload_website
+            echo ""
+            echo "---------------------------- COPY BELOW"
+            echo ""
+            echo "$2"
+            echo "-"
+            echo ""
+            printf '%b\n' "$(cat util_plugins/$2/description.txt)"
+            echo ""
+            if [[ "${generateupload_screenshots}" != "" ]]; then 
+                read -r -a generateupload_screenshots_array <<< echo "$generateupload_screenshots"
+                echo "Screenshots:"
+                for screenshot in "${generateupload_screenshots_array[@]}"
+                do
+                    echo "![Image](${screenshot},\"icon\")"
+                done
+                echo ""
+            fi
+            if [[ "${generateupload_usage}" != "" ]]; then 
+                echo "Usage:"
+                echo $generateupload_usage
+                echo ""
+            fi
+            if [[ "${generateupload_website}" != "" ]]; then
+                echo "[Website]($generateupload_website)"
+                echo ""
+            fi
+            printf '%b\n' "$(cat util_plugins/$2/plugin.sh)"
+            echo ""
+            echo "---------------------------- COPY ABOVE"
+            echo ""
+            echo "We will automatically make a download link for the plugin code. Don't worry."
+        else
+            echo "This plugin doesn't exist, view your plugins using \"util plugins\"."
+        fi
+    else
+        echo "Please specify the plugin."
+    fi
 elif [[ $1 = "help" ]]; then
-    echo "[] - optional argument"
-    echo "<> - required argument"
-    # echo "<thing1 | thing2> - select one of these options"
+    echo "[argument] - optional argument"
+    echo "<argument> - required argument"
+    echo "<argument: thing1 | thing2> - select one of these options"
     echo "[S] - possible to add \"s-\" before the command to run without root, for example: util s-install"
     echo "(DO NOT INCLUDE THESE WHEN TYPING THE COMMAND)"
     echo ""
@@ -588,6 +678,8 @@ elif [[ $1 = "help" ]]; then
     echo "util disk - shows information on your disk space"
     echo "util find <text> <file name> - finds text you specified in the file you specified"
     echo "util open <file name> - opens file with the default program for the file extension"
+    echo "util size <file name> - shows the size of the file you specified"
+    echo "util view [path] [options] - views the files of the current path or if specified the specified path with optional options"
     echo ""
     echo "PACKAGES"
     echo ""
@@ -618,10 +710,13 @@ elif [[ $1 = "help" ]]; then
     echo "util getviewplugin <plugin> - views the plugin you specified on the internet"
     echo "util downloadplugin <plugin> - download the plugin you specified from the internet"
     echo "util p <plugin> - run plugin"
+    echo "util sp <plugin> - run plugin under sudo"
     echo "util viewplugin <plugin> - view installed plugin you specified"
     echo "util deleteplugin <plugin> - deletes installed plugin you specified"
     echo "util getplugins - view all available plugins"
     echo "util createplugin - creates plugin"
+    echo "util editplugin <plugin> <part: description | plugin> [editor] - edits plugin you specified with the editor you specified, if there is no editor specified it will use your default editor"
+    echo "util generateupload <plugin> - generates upload code for plugin"
     echo ""
     echo "MISCELLANEOUS"
     echo ""
@@ -636,6 +731,7 @@ elif [[ $1 = "help" ]]; then
     echo "util tutorials - goes to the official Util.sh tutorials"
     echo "[S] util delexe <executable> - deletes executable (root required)"
     echo "util viewexes - views executables"
+    echo "util editexe <executable> [editor] - edits executable with the editor you specified, if you specified no editor it opens it in your default editor"
  else
     echo "Invalid command \"$1\""
     echo "Try running \"util help\""
