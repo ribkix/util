@@ -1,11 +1,9 @@
-=+= What's new in Version 2020.8.9 =+=
+=+= What's new in Version 2020.8.10 =+=
 
-- A bit of polishing
-- Added up to date and need to update text to the getversion command
-- Added editexe command
-- Added editplugin command
-- Added size command
-- Added view command
-- Added generateupload command
-- Added sp command
+- Added path command
+- Added up to date and need to update text to the getchangelog command
+- Added blog command
+- Added blogpost command
 - Bug fixes
+
+https://utilsh.tk/blog#2020-8-10
