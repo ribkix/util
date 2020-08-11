@@ -1,18 +1,17 @@
 #!/bin/bash
 
-version="2020.8.9"
+version="2020.8.10"
 
 if [[ $1 = "changelog" ]]; then
-    echo "=+= What's new in Version 2020.8.9 =+="
+    echo "=+= What's new in Version $version =+="
     echo ""
-    echo "- A bit of polishing"
-    echo "- Added editexe command"
-    echo "- Added editplugin command"
-    echo "- Added size command"
-    echo "- Added view command"
-    echo "- Added generateupload command"
-    echo "- Added sp command"
+    echo "- Added path command"
+    echo "- Added up to date and need to update text to the getchangelog command"
+    echo "- Added blog command"
+    echo "- Added blogpost command"
     echo "- Bug fixes"
+    echo ""
+    echo "Run \"util blogpost\" to see the blog post of this changelog."
 elif [[ $1 =  "executable" ]]; then
     if [[ $# = 2 ]]; then
         if [[ $EUID = 0 ]]; then
@@ -424,10 +423,10 @@ elif [[ $1 = "getviewplugin" ]]; then
             echo "Name: $2"
             echo "Description:"
             printf '%b\n' "$(cat util_viewplugin_description.txt)"
-            rm util_viewplugin_description.txt
         else
             echo "This plugin doesn't exist."
         fi
+        rm util_viewplugin_description.txt
     else
         echo "Please specify what plugin you want to view."
     fi
@@ -506,6 +505,14 @@ elif [[ $1 = "getchangelog" ]]; then
     wget https://raw.githubusercontent.com/ribkix/util/master/changelog.txt -O util_changelog.txt > /dev/null 2>&1
     printf '%b\n' "$(cat util_changelog.txt)"
     rm util_changelog.txt
+    wget https://raw.githubusercontent.com/ribkix/util/master/version.txt -O util_version.txt > /dev/null 2>&1
+    echo ""
+    if [[ $(< util_version.txt) != "$version" ]]; then 
+        echo "You should update, run \"util getupdate\"."
+    else
+        echo "Version up to date."
+    fi
+    rm util_version.txt
 elif [[ $1 = "copycmd" ]]; then
     if [[ $# -ge 2 ]]; then
         echo ${*:2} > util_copycmd.txt
@@ -659,6 +666,12 @@ elif [[ $1 = "generateupload" ]]; then
     else
         echo "Please specify the plugin."
     fi
+elif [[ $1 = "path" ]]; then
+    pwd
+elif [[ $1 = "blog" ]]; then
+    xdg-open https://utilsh.tk/blog
+elif [[ $1 = "blogpost" ]]; then
+    xdg-open https://utilsh.tk/blog#2020-8-10
 elif [[ $1 = "help" ]]; then
     echo "[argument] - optional argument"
     echo "<argument> - required argument"
@@ -680,6 +693,7 @@ elif [[ $1 = "help" ]]; then
     echo "util open <file name> - opens file with the default program for the file extension"
     echo "util size <file name> - shows the size of the file you specified"
     echo "util view [path] [options] - views the files of the current path or if specified the specified path with optional options"
+    echo "util path - shows current path"
     echo ""
     echo "PACKAGES"
     echo ""
@@ -701,6 +715,7 @@ elif [[ $1 = "help" ]]; then
     echo "util version - shows current version you're running"
     echo "util getversion - gets and shows currently available version"
     echo "util getchangelog - gets and shows current changelog"
+    echo "util blogpost - goes to the official Util.sh blog post of your current version"
     echo ""
     echo "PLUGINS"
     echo ""
@@ -732,6 +747,7 @@ elif [[ $1 = "help" ]]; then
     echo "[S] util delexe <executable> - deletes executable (root required)"
     echo "util viewexes - views executables"
     echo "util editexe <executable> [editor] - edits executable with the editor you specified, if you specified no editor it opens it in your default editor"
+    echo "util blog - goes to the official Util.sh blog"
  else
     echo "Invalid command \"$1\""
     echo "Try running \"util help\""
