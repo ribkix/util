@@ -1,9 +1,5 @@
-=+= What's new in Version 2020.8.10 =+=
+=+= What's new in Version 2020.8.11 =+=
 
-- Added path command
-- Added up to date and need to update text to the getchangelog command
-- Added blog command
-- Added blogpost command
-- Bug fixes
+- Made disk command human readable
 
-https://utilsh.tk/blog#2020-8-10
+https://utilsh.tk/blog#2020-8-11
