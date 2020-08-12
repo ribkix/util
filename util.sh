@@ -1,15 +1,11 @@
 #!/bin/bash
 
-version="2020.8.10"
+version="2020.8.11"
 
 if [[ $1 = "changelog" ]]; then
     echo "=+= What's new in Version $version =+="
     echo ""
-    echo "- Added path command"
-    echo "- Added up to date and need to update text to the getchangelog command"
-    echo "- Added blog command"
-    echo "- Added blogpost command"
-    echo "- Bug fixes"
+    echo "- Made disk command human readable"
     echo ""
     echo "Run \"util blogpost\" to see the blog post of this changelog."
 elif [[ $1 =  "executable" ]]; then
@@ -552,7 +548,7 @@ elif [[ $1 = "delfolder" ]]; then
 elif [[ $1 = "listblock" ]]; then
     lsblk
 elif [[ $1 = "disk" ]]; then
-    df
+    df -h
 elif [[ $1 = "tutorials" ]]; then
     xdg-open http://utilsh.tk/tutorials
 elif [[ $1 = "delexe" ]]; then
@@ -671,7 +667,7 @@ elif [[ $1 = "path" ]]; then
 elif [[ $1 = "blog" ]]; then
     xdg-open https://utilsh.tk/blog
 elif [[ $1 = "blogpost" ]]; then
-    xdg-open https://utilsh.tk/blog#2020-8-10
+    xdg-open https://utilsh.tk/blog#2020-8-11
 elif [[ $1 = "help" ]]; then
     echo "[argument] - optional argument"
     echo "<argument> - required argument"
