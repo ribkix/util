@@ -1,5 +1,5 @@
-=+= What's new in Version 2020.8.11 =+=
+=+= What's new in Version 2020.9.27 =+=
 
-- Made disk command human readable
+- Added processes command
 
 https://utilsh.tk/blog#2020-8-11
