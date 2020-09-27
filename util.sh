@@ -1,11 +1,11 @@
 #!/bin/bash
 
-version="2020.8.11"
+version="2020.9.27"
 
 if [[ $1 = "changelog" ]]; then
     echo "=+= What's new in Version $version =+="
     echo ""
-    echo "- Made disk command human readable"
+    echo "- Added processes command"
     echo ""
     echo "Run \"util blogpost\" to see the blog post of this changelog."
 elif [[ $1 =  "executable" ]]; then
@@ -667,7 +667,9 @@ elif [[ $1 = "path" ]]; then
 elif [[ $1 = "blog" ]]; then
     xdg-open https://utilsh.tk/blog
 elif [[ $1 = "blogpost" ]]; then
-    xdg-open https://utilsh.tk/blog#2020-8-11
+    xdg-open https://utilsh.tk/blog#2020-9-27
+elif [[ $1 = "processes" ]]; then
+    ps -aux
 elif [[ $1 = "help" ]]; then
     echo "[argument] - optional argument"
     echo "<argument> - required argument"
@@ -744,6 +746,7 @@ elif [[ $1 = "help" ]]; then
     echo "util viewexes - views executables"
     echo "util editexe <executable> [editor] - edits executable with the editor you specified, if you specified no editor it opens it in your default editor"
     echo "util blog - goes to the official Util.sh blog"
+    echo "util processes - views your processes"
  else
     echo "Invalid command \"$1\""
     echo "Try running \"util help\""
